@@ -3,8 +3,6 @@
 
 #include <thread>
 #include <mutex>
-#include <condition_variable>
-#include <queue>
 
 #include "atomic_queue.hpp"
 #include "task.hpp"
@@ -16,7 +14,6 @@ private:
 	AtomicQueue<Task*>* workqueue;
 
 	std::thread thread;
-
 
 	void DoTaskSpin();
 
