@@ -35,7 +35,7 @@ public:
 		cv.notify_one();
 	}
 
-	// Returns if this queue is empty and stopped
+	// Returns if this queue is stopped
 	bool Get(T* element) 
 	{
 		std::unique_lock<std::mutex> l(lock);
@@ -59,9 +59,8 @@ public:
 	}
 
 	// Stop this queue
-	// This stops all future adds
-	// And makes future gets not wait
-	// On empty queue
+	// This will invalidate all currently waiting
+	// and future gets
 	void Stop() 
 	{
 		std::unique_lock<std::mutex>(lock);
