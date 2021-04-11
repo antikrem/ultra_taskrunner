@@ -1,6 +1,5 @@
 #include "worker.hpp"
 
-#include "task_runner.hpp"
 #include <iostream>
 
 void Worker::DoTaskSpin()
@@ -20,5 +19,5 @@ Worker::~Worker() {
 Worker::Worker(AtomicQueue<Task*>* workqueue)
 	: workqueue(workqueue), thread(&Worker::DoTaskSpin, this)
 {
-	this->runner = runner;
+
 }

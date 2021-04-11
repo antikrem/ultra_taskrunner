@@ -9,14 +9,9 @@
 #include "atomic_queue.hpp"
 #include "task.hpp"
 
-class TaskRunner;
-
-
 class Worker {
 
 private:
-
-	TaskRunner* runner;
 
 	AtomicQueue<Task*>* workqueue;
 
