@@ -54,6 +54,13 @@ public:
 	void Stop() {
 		std::unique_lock<std::mutex> l(lock);
 		taskqueue.Stop();
+
+		for (auto& i : workers)
+		{
+			delete i;
+		}
+
+		workers.clear();
 	}
 
 };
