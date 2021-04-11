@@ -66,7 +66,7 @@ public:
 	{
 		std::unique_lock<std::mutex>(lock);
 		stopFlag = true;
-		cv.notify_one();
+		cv.notify_all();
 	}
 
 	int Size() const
