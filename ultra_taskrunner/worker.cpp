@@ -7,29 +7,18 @@ void Worker::DoTaskSpin()
 {
 	Task* task = nullptr;
 
-	while (workloads.Get(&task)) {
+	while (workqueue->Get(&task)) {
 		task->Execute();
 		task = nullptr;
-		runner->NotifyWorkCompletion(this);
 	}
-
-	runner->NotifyCleanup(this);
 }
 
 Worker::~Worker() {
 	thread.join();
 }
 
-Worker::Worker(TaskRunner* runner)
-	:thread(&Worker::DoTaskSpin, this)
+Worker::Worker(AtomicQueue<Task*>* workqueue)
+	: workqueue(workqueue), thread(&Worker::DoTaskSpin, this)
 {
 	this->runner = runner;
-}
-
-void Worker::QueueWork(Task* task) {
-	workloads.Add(task);
-}
-
-void Worker::StopWorker() {
-	workloads.Stop();
 }

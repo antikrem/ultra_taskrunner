@@ -18,20 +18,18 @@ private:
 
 	TaskRunner* runner;
 
-	AtomicQueue<Task*> workloads;
+	AtomicQueue<Task*>* workqueue;
+
 	std::thread thread;
-	
+
+
 	void DoTaskSpin();
 
 public:
 
 	~Worker();
 
-	Worker(TaskRunner* runner);
-
-	void QueueWork(Task* task);
-
-	void StopWorker();
+	Worker(AtomicQueue<Task*>* workqueue);
 
 };
 
