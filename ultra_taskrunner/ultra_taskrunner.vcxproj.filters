@@ -44,9 +44,6 @@
     <ClInclude Include="task_result.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="runner_notifier.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="atomic_queue.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

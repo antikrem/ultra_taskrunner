@@ -147,7 +147,6 @@
   <ItemGroup>
     <ClInclude Include="anonymous_task.hpp" />
     <ClInclude Include="atomic_queue.hpp" />
-    <ClInclude Include="runner_notifier.hpp" />
     <ClInclude Include="task.hpp" />
     <ClInclude Include="task_result.hpp" />
     <ClInclude Include="task_runner.hpp" />
