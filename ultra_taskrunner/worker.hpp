@@ -19,9 +19,10 @@ private:
 
 public:
 
-	~Worker();
-
 	Worker(AtomicQueue<Task*>* workqueue);
+
+	// Also joins worker thread
+	~Worker();
 
 };
 
