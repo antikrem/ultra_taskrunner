@@ -5,6 +5,7 @@
 
 #include "delayed_adder.h"
 #include <random>
+#include <set>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -76,6 +77,18 @@ namespace ultrataskrunnertests
 			sut.Stop();
 			Assert::AreEqual(false, sut.Get(&v));
 		}
+		template <class T>
+		std::set<T> VecToSet(std::vector<T> vec)
+		{
+			std::set<T> set;
+
+			for (auto& i : vec)
+			{
+				set.insert(i);
+			}
+
+			return set;
+		}
 
 		TEST_METHOD(StressTest_Kagiyama)
 		{
@@ -90,14 +103,14 @@ namespace ultrataskrunnertests
 
 			std::random_device rd;
 			std::mt19937 gen(rd());
-			std::uniform_int_distribution<> distr(1000, 10000);
+			std::uniform_int_distribution<> distr(1000, 5000);
 
 			for (auto i : samples)
 			{
 				adder.DelayedAdd(distr(gen), i);
 			}
 
-			adder.DelayedStop(30000);
+			adder.DelayedStop(50000);
 
 			std::vector<int> sampled;
 			int value;
@@ -106,7 +119,9 @@ namespace ultrataskrunnertests
 				sampled.push_back(value);;
 			};
 
-			Sleep(50000);
+			Sleep(60000);
+
+			Assert::AreEqual(true, VecToSet(sampled) == VecToSet(samples));
 		}
 	};
 }
